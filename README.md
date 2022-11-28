@@ -21,6 +21,26 @@ SciHTC contains 184,160 papers in total. We split the dataset in a 80:10:10 rati
 ### Dataset Access
 We make the ACM paper IDs and the labels for the train, test and dev splits publicly available [here](https://drive.google.com/drive/folders/1uRh5A-GpFRxA_QLzgN_D-y8G5j6JpZPJ?usp=sharing). Please email us at msadat3@uic.edu for getting access to the full dataset.
 
+Alternatively, you can reconstruct the SciHTC dataset based on the released paper IDs for each split and extracting the titles, abstracts and keywords using our released scripts from ACM proceedings as follows.
+
+### Dataset Reconstruction
+
+ACM makes the proceedings data available on request for research purposes. After obtaining the proceedings data from ACM, follow the steps below to reconstruct SciHTC.
+
+#### Step 1:
+Extract the ids, titles, abstracts and keywords of the papers used to create SciHTC by using the script named 'ExtractData.py.' Given the location of the directory containing ACM proceedings, this script with extract the necessary information for each paper and put them into a specified location in CSV format. An example command for using this script can be seen below.
+
+```
+python ExtractData.py --proceedings_loc '/home/msadat3/HTC/proceedings/' --output_csv_loc '/home/msadat3/SciHTC_data/ExtractedData.csv' 
+```
+#### Step 2:
+After extracting the data, the titles, abstracts and keywords for the train, test and dev splits can be obtained using the script named 'Get_splitwise_title_abstract_keywords.py.' Given the location of the CSV file created in the previous step and the location of the directory containing the split-wise ids and categories (made publicly available in this repository), this script extracts the titles, abstracts and keywords and saves them in CSV files along with their respective ids and categories for each of the three splits in a specified output directory. An example command for this step can be seen below.
+
+```
+python Get_splitwise_title_abstract_keywords.py --extracted_data_loc '/home/msadat3/SciHTC_data/ExtractedData.csv' --directory_for_splitwise_ids_and_categories '/home/msadat3/SciHTC_data/IDs_and_categories/' --output_directory '/home/msadat3/SciHTC_data/Titles_abstracts_keywords_included/'
+```
+
+
 
 ## Model Training and Testing
 Coming soon!
