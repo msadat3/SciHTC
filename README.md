@@ -51,8 +51,7 @@ If you use this dataset, please cite our paper:
 ```
 @inproceedings{sadat-caragea-2022-scihtc,
     title = "Hierarchical Multi-Label Classification of Scientific Documents",
-    author = "Sadat, Mobashir  and
-      Caragea, Cornelia",
+    author = "Sadat, Mobashir  and Caragea, Cornelia",
     booktitle = "Proceedings of The 2022 Conference on Empirical Methods in Natural Language Processing (Volume 1: Long Papers)",
     month = dec,
     year = "2022",
