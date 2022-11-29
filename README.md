@@ -19,7 +19,7 @@ SciHTC contains 184,160 papers in total. We split the dataset in a 80:10:10 rati
 
 
 ### Dataset Access
-We make the ACM paper IDs and the labels for the train, test and dev splits publicly available [here](https://drive.google.com/drive/folders/1uRh5A-GpFRxA_QLzgN_D-y8G5j6JpZPJ?usp=sharing). Please email us at msadat3@uic.edu for getting access to the full dataset.
+We make the ACM paper IDs and the labels for the train, test and dev splits publicly available [here](https://drive.google.com/drive/folders/1uRh5A-GpFRxA_QLzgN_D-y8G5j6JpZPJ?usp=sharing). Please email us at msadat3@uic.edu/sadat.mobashir@gmail.com/cornelia@uic.edu for getting access to the full dataset.
 
 Alternatively, you can reconstruct the SciHTC dataset based on the released paper IDs for each split and extracting the titles, abstracts and keywords using our released scripts from ACM proceedings as follows.
 
@@ -61,4 +61,4 @@ If you use this dataset, please cite our paper:
 ```
 
 ## Contact
-Please contact us at msadat3@uic.edu with any questions.
+Please contact us at msadat3@uic.edu, sadat.mobashir@gmail.com, cornelia@uic.edu with any questions.
