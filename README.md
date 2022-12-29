@@ -40,9 +40,46 @@ After extracting the data, the titles, abstracts and keywords for the train, tes
 python Get_splitwise_title_abstract_keywords.py --extracted_data_loc '/home/msadat3/SciHTC_data/ExtractedData.csv' --directory_for_splitwise_ids_and_categories '/home/msadat3/SciHTC_data/IDs_and_categories/' --output_directory '/home/msadat3/SciHTC_data/Titles_abstracts_keywords_included/'
 ```
 
+## Data pre-processing
+After obtaining the CSV files for both category information and the input texts (title, abstract, keywords), use the script named "Preprocess_data.py" to pre-process the dataset. In addition to pre-processing the titles, abstracts and keywords, this file will also prepare the labels for both flat and hierarchical multi-label experiments. An example command can be seen below:
 
+```
+python Preprocess_data.py --title_abstract_keywords_loc '/home/msadat3/HTC/SciHTC_data/IDs_title_abstract_keywords/' --category_loc '/home/msadat3/HTC/SciHTC_data/IDs_and_categories/' --output_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --title_abstract_max_token 100 --keywords_max_token 15 
+```
 
 ## Model Training and Testing
+
+### BERT/SciBERT models
+
+#### Prepare Data
+To prepare the data for BERT/SciBERT models, use the script named 'PrepareData_transformers.py.' This script reads the pre-processed data and prepares encoded inputs for BERT/SciBERT models. Example command:
+
+```
+python PrepareData_transformers.py --model_type 'SciBERT' --preprocessed_data_loc '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --output_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/' --use_keywords 'no'
+```
+When the --use_keywords parameter is set to 'no', both the encoded versions of the input text (title+abstract) and the keyword labels will be created. When it is set to 'yes', only the encoded versions of the title+abstract+keywords will be created.
+
+#### With/without keywords
+##### Flat models
+Use the script named 'Train_and_test_flat_models_transformers.py' to train and evaluate the flat models. Based on the type of model you want to train (with/without keywords), make sure to specify the correct data directory (with/without keywords) created using the script from the previous step. Example command:
+
+```
+python Train_and_test_flat_models_transformers.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --checkpoint_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/' --test_output_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/'
+```
+##### Hierarchical models
+Coming soon!
+
+#### Multi-tasking models
+##### Flat models
+Use the script named 'Train_and_test_flat_models_transformers_multi_tasking.py' to train and evaluate the flat multi-tasking models. Make sure to specify the correct data directory (with or without keywords) created using the script from the previous step. Example command:
+
+```
+python Train_and_test_flat_models_transformers_multi_tasking.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --checkpoint_location '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/flat_model_multitasking/' --test_output_location '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/flat_model_multitasking/' --classification_loss_weight 1 --keyword_labeling_loss_weight 1
+```
+##### Hierarchical models
+Coming soon!
+
+### BiLSTM/CNN models
 Coming soon!
 
 ## Citation
