@@ -192,11 +192,6 @@ def get_score_reports_average_flat(f1_scores, precisios, recalls, TPs, FPs, TNs,
     print('Macro f1', sum(f1_scores)/len(f1_scores))
     print('Micro f1', calculate_micro_f1_scores_flat(TPs, FPs, FNs))
 
-    # with open(outputDirectory+'/results.txt', 'w') as file:
-    #     file.write('Precision '+ str(sum(precisios) / len(precisios)))
-    #     file.write('Recall ' + str(sum(recalls) / len(recalls)))
-    #     file.write('Macro f1 ' + str(sum(f1_scores)/len(f1_scores)))
-    #     file.write('Micro f1 ' + str(calculate_micro_f1_scores_flat(TPs, FPs, FNs)))
 
     with open(outputDirectory +'/results.txt', 'w') as file:
         file.write('Precision '+str(sum(precisios) / len(precisios)) + '\n')
