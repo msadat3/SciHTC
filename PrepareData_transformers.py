@@ -12,7 +12,7 @@ import os.path as p
 import os
 import nltk
 import argparse
-from DataPreparation.Data_Subset import Data_Subset
+from Data_Subset import Data_Subset
 
 def Tokenize_Input(text, add_special_tokens):
 	text = str(text)
