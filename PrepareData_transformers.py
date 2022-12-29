@@ -1,4 +1,5 @@
-#Example command
+# This script reads the pre-processed data and prepares encoded inputs for BERT/SciBERT models
+# Example command:
 # python PrepareData_transformers.py --model_type 'SciBERT' --preprocessed_data_loc '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --output_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/' --use_keywords 'no'
 
 
