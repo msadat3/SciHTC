@@ -116,45 +116,21 @@ def prepare_data_for_transformers(output_location, trainingSet, testingSet, devS
 	print(X_dev.shape, att_mask_dev.shape)
   
 
-	if use_keywords == False:
-		X_train_keywords = trainingSet.apply(lambda x: Tokenize_Input(x['Preprocessed_keywords'], add_special_tokens=False), axis=1)
-		X_test_keywords = testingSet.apply(lambda x: Tokenize_Input(x['Preprocessed_keywords'], add_special_tokens=False), axis=1)
-		X_dev_keywords = devSet.apply(lambda x: Tokenize_Input(x['Preprocessed_keywords'], add_special_tokens=False), axis=1)
-
+	if use_keywords == 'no':
+		X_train_keywords = trainingSet.apply(lambda x: Tokenize_Input(x['Preprocessed_keywords'], add_special_tokens=False), axis=1)		
 		X_train_keywords = pandas.Series(X_train_keywords)
-		X_test_keywords = pandas.Series(X_test_keywords)
-		X_dev_keywords = pandas.Series(X_dev_keywords)
-
 		trainingSet['BERT_tokenized_keywords'] = X_train_keywords
-		testingSet['BERT_tokenized_keywords'] = X_test_keywords
-		devSet['BERT_tokenized_keywords'] = X_dev_keywords
 
 		y_train_keywords = trainingSet.apply(lambda x: tag_keywords_or_not(x['BERT_tokenized'], x['BERT_tokenized_keywords']), axis=1)
-		y_test_keywords = testingSet.apply(
-			lambda x: tag_keywords_or_not(x['BERT_tokenized'], x['BERT_tokenized_keywords']), axis=1)
-		y_dev_keywords = devSet.apply(
-			lambda x: tag_keywords_or_not(x['BERT_tokenized'], x['BERT_tokenized_keywords']), axis=1)
-
 		y_train_keywords = pandas.Series(y_train_keywords)
-		y_test_keywords = pandas.Series(y_test_keywords)
-		y_dev_keywords = pandas.Series(y_dev_keywords)
-
 		y_train_keywords = y_train_keywords.apply(pad_seq, max_len=max_len, pad_idx=tokenizer.pad_token_id)
-		y_test_keywords = y_test_keywords.apply(pad_seq, max_len=max_len, pad_idx=tokenizer.pad_token_id)
-		y_dev_keywords = y_dev_keywords.apply(pad_seq, max_len=max_len, pad_idx=tokenizer.pad_token_id)
-
 		y_train_keywords = np.array(y_train_keywords.values.tolist())
-		y_test_keywords = np.array(y_test_keywords.values.tolist())
-		y_dev_keywords = np.array(y_dev_keywords.values.tolist())
-
+		
 		save_data(y_train_keywords, output_location + 'y_train_keywords.pkl')
-		save_data(y_test_keywords, output_location + 'y_test_keywords.pkl')
-		save_data(y_dev_keywords, output_location + 'y_dev_keywords.pkl')
 
-		print('Keyword labels shapes:')
+		print('Keyword labels shape:')
 		print(y_train_keywords.shape)
-		print(y_test_keywords.shape)
-		print(y_dev_keywords.shape)
+
 
 
 parser = argparse.ArgumentParser(description='Prepare data for BERT/SciBERT models.')
