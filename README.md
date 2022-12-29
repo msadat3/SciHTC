@@ -60,23 +60,23 @@ python PrepareData_transformers.py --model_type 'SciBERT' --preprocessed_data_lo
 When the --use_keywords parameter is set to 'no', both the encoded versions of the input text (title+abstract) and the keyword labels will be created. When it is set to 'yes', only the encoded versions of the title+abstract+keywords will be created.
 
 #### With/without keywords
-##### Flat models
+##### => Flat models
 Use the script named 'Train_and_test_flat_models_transformers.py' to train and evaluate the flat models. Based on the type of model you want to train (with/without keywords), make sure to specify the correct data directory (with/without keywords) created using the script from the previous step. Example command:
 
 ```
 python Train_and_test_flat_models_transformers.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --checkpoint_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/' --test_output_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/'
 ```
-##### Hierarchical models
+##### => Hierarchical models
 Coming soon!
 
 #### Multi-tasking models
-##### Flat models
+##### => Flat models
 Use the script named 'Train_and_test_flat_models_transformers_multi_tasking.py' to train and evaluate the flat multi-tasking models. Make sure to specify the correct data directory (with or without keywords) created using the script from the previous step. Example command:
 
 ```
 python Train_and_test_flat_models_transformers_multi_tasking.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --checkpoint_location '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/flat_model_multitasking/' --test_output_location '/home/msadat3/HTC/SciHTC_data/SciBERT_without_keywords/flat_model_multitasking/' --classification_loss_weight 1 --keyword_labeling_loss_weight 1
 ```
-##### Hierarchical models
+##### => Hierarchical models
 Coming soon!
 
 ### BiLSTM/CNN models
