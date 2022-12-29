@@ -1,4 +1,5 @@
-
+#This script reads the data from CSV files, pre-processes the inputs (title, abstract, keywords) and prepares the labels for both flat and hierarchical multi-label classification.
+#Example command:
 #python Preprocess_data.py --title_abstract_keywords_loc '/home/msadat3/HTC/SciHTC_data/IDs_title_abstract_keywords/' --category_loc '/home/msadat3/HTC/SciHTC_data/IDs_and_categories/' --output_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --title_abstract_max_token 100 --keywords_max_token 15 
 
 import pandas
@@ -81,7 +82,7 @@ for category in trainingSet.dataframe['Category'].tolist():
 	category_split = category.split('->')
 	categories+=category_split[1:]
 categories = list(set(categories))
-print('Total number of categories: ',len(categories))
+print('Total number of categories: ', len(categories))
 
 trainingSet.multiLabelData(categories)
 testingSet.multiLabelData(categories)
