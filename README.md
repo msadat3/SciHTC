@@ -67,7 +67,11 @@ Use the script named 'Train_and_test_flat_models_transformers.py' to train and e
 python Train_and_test_flat_models_transformers.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --checkpoint_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/' --test_output_location '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/flat_model/'
 ```
 ##### => Hierarchical models
-Coming soon!
+Use the script named 'Train_and_test_hierarchical_models_transformers.py' to train and evaluate the hierarchical models. Based on the type of model you want to train (with/without keywords), make sure to specify the correct data directory (with/without keywords) created using the script from the previous step. Example command:
+
+```
+python Train_and_test_hierarchical_models_transformers.py --model_type 'SciBERT' --prepared_data_dir '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/' --prepared_labels_dir '/home/msadat3/HTC/SciHTC_data/SciHTC_preprocessed/' --models_base_directory '/home/msadat3/HTC/SciHTC_data/SciBERT_with_keywords/HR_models/'
+```
 
 #### Multi-tasking models
 ##### => Flat models
