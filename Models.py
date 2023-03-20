@@ -117,7 +117,7 @@ class HR_BERT(nn.Module):
         self.bert = BertModel.from_pretrained('bert-base-uncased', output_attentions = False, output_hidden_states = True, return_dict=False)
         self.linear = nn.Linear(768, 1)
     def forward(self, input, att_mask):
-        first_out, pooled_output, third_out = self.bert(input, attention_mask = att_mask)
+        _, pooled_output, _ = self.bert(input, attention_mask = att_mask)
         output = torch.sigmoid(self.linear(pooled_output))
         return output
 
